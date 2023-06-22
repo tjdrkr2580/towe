@@ -14,7 +14,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('hello'),
+          centerTitle: false,
+          title: const Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: Text(
+              'Towe.',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
+              textAlign: TextAlign.left,
+            ),
+          ),
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
         body: const HomeScreen(),
       ),
