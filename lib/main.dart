@@ -26,8 +26,31 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.black,
           backgroundColor: Colors.transparent,
           elevation: 0,
+          actions: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.add_box,
+                  ),
+                  splashRadius: 18,
+                  iconSize: 25,
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.menu),
+                  splashRadius: 18,
+                  iconSize: 25,
+                ),
+              ],
+            ),
+          ],
         ),
-        body: const HomeScreen(),
+        body: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: HomeScreen(),
+        ),
       ),
     );
   }

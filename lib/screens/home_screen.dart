@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:towe/widgets/sized_box_30.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +11,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: [
+        const SizedBoxThirty(),
+        Container(
+          width: double.infinity,
+          height: 200,
+          decoration: const BoxDecoration(
+              color: Color(0xff1E90FF),
+              borderRadius: BorderRadius.all(Radius.circular(16))),
+        )
+      ],
+    );
   }
 }
