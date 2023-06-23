@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:towe/screens/home_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await dotenv.load(fileName: 'assets/config/.env');
+  runApp(const Towe());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Towe extends StatelessWidget {
+  const Towe({super.key});
 
   // This widget is the root of your application.
   @override
@@ -26,8 +28,31 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.black,
           backgroundColor: Colors.transparent,
           elevation: 0,
+          actions: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.add_box,
+                  ),
+                  splashRadius: 18,
+                  iconSize: 25,
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.menu),
+                  splashRadius: 18,
+                  iconSize: 25,
+                ),
+              ],
+            ),
+          ],
         ),
-        body: const HomeScreen(),
+        body: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: HomeScreen(),
+        ),
       ),
     );
   }
