@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 <key>NSLocationWhenInUseUsageDescription</key>
-<string>위치 권한을 허용해주시면 날씨 정보를 제공해드려요!</string>
+<string>This app needs access to location when open.</string>
 <key>NSLocationAlwaysUsageDescription</key>
-<string>This app needs access to location when in the background.</string>
+<string>This app neemds access to location when in the background.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
