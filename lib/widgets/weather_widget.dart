@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:towe/service/location.dart';
 
-class Weather extends StatefulWidget {
-  const Weather({super.key});
+class WeatherWidget extends StatefulWidget {
+  const WeatherWidget({super.key});
 
   @override
-  State<Weather> createState() => _MyWidgetState();
+  State<WeatherWidget> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<Weather> {
+class _MyWidgetState extends State<WeatherWidget> {
+  @override
+  void initState() {
+    MyLocation.getCurrentLocation();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Column();
   }
 }

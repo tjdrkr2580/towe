@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:towe/widgets/sized_box_30.dart';
+import 'package:towe/widgets/weather_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: const BoxDecoration(
               color: Color(0xff1E90FF),
               borderRadius: BorderRadius.all(Radius.circular(16))),
+          child: const WeatherWidget(),
         )
       ],
     );
