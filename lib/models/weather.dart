@@ -9,17 +9,17 @@
 
 class Weather {
   final double temp;
-  final double feels;
-  final double tempMin;
-  final double tempMax;
+  final double feels_like;
+  final double temp_min;
+  final double temp_max;
   final int pressure;
   final int humidity;
 
-  Weather(this.feels, this.temp, this.tempMin, this.tempMax, this.pressure,
-      this.humidity);
+  Weather(this.feels_like, this.temp, this.temp_min, this.temp_max,
+      this.pressure, this.humidity);
 
   factory Weather.fromJson(Map<String, dynamic> json) {
-    return Weather(json['feels'], json['temp'], json['tempMin'],
-        json['tempMax'], json['pressure'], json['humidity']);
+    return Weather(json['temp'], json['feels_like'], json['temp_min'],
+        json['temp_max'], json['pressure'], json['humidity']);
   }
 }

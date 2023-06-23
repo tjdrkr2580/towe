@@ -16,10 +16,8 @@ class MyLocation {
       );
       positionList.add(position.latitude);
       positionList.add(position.longitude);
-      print(positionList);
       return positionList;
     } catch (e) {
-      print('$e');
       return null;
     }
   }
