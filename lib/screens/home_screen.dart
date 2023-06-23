@@ -16,12 +16,16 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         const SizedBoxThirty(),
         Container(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           width: double.infinity,
           height: 200,
-          decoration: const BoxDecoration(
-              color: Color(0xff1E90FF),
-              borderRadius: BorderRadius.all(Radius.circular(16))),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomCenter,
+                colors: [Colors.blue.shade300, Colors.blue.shade500],
+              ),
+              borderRadius: const BorderRadius.all(Radius.circular(16))),
           child: const WeatherWidget(),
         )
       ],

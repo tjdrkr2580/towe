@@ -36,14 +36,129 @@ class _MyWidgetState extends State<WeatherWidget> {
         future: weatherInfo,
         builder: (context, AsyncSnapshot<Weather> snapshot) {
           if (snapshot.hasData == true) {
-            return const Column(
+            return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text("현재 기온"),
+                const Text(
+                  "현재 온도",
+                  style: TextStyle(
+                      fontSize: 14.5,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  '${(snapshot.data!.temp - 273.15).toStringAsFixed(2)}°C',
+                  style: const TextStyle(
+                      fontSize: 40,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "최고 온도",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            '${(snapshot.data!.temp_max - 273.15).toStringAsFixed(2)}°C',
+                            style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const Text(
+                            "최저 온도",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            '${(snapshot.data!.temp_min - 273.15).toStringAsFixed(2)}°C',
+                            style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const Text(
+                            "체감 온도",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            '${(snapshot.data!.feels_like - 273.15).toStringAsFixed(2)}°C',
+                            style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const Text(
+                            "최저 온도",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            '${(snapshot.data!.temp_min - 273.15).toStringAsFixed(2)}°C',
+                            style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          const Text(
+                            "습도",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                          Text(
+                            '${(snapshot.data!.humidity)}%',
+                            style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
               ],
             );
           } else {
-            return const CircularProgressIndicator();
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
         });
   }
