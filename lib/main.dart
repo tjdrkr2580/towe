@@ -4,11 +4,11 @@ import 'package:towe/screens/home_screen.dart';
 
 void main() async {
   await dotenv.load(fileName: 'assets/config/.env');
-  runApp(const MyApp());
+  runApp(const Towe());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class Towe extends StatelessWidget {
+  const Towe({super.key});
 
   // This widget is the root of your application.
   @override
