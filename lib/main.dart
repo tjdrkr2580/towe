@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:towe/screens/home_screen.dart';
+import 'package:towe/widgets/write_button.dart';
 
 void main() async {
   await dotenv.load(fileName: 'assets/config/.env');
@@ -50,32 +51,15 @@ class Towe extends StatelessWidget {
         ],
       ),
       body: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: HomeScreen(),
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(right: 20, bottom: 50),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(7.25),
-              decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 108, 162, 255),
-                  borderRadius: BorderRadius.circular(50)),
-              child: IconButton(
-                highlightColor: Colors.transparent,
-                splashColor: Colors.transparent,
-                iconSize: 30,
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.draw,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
+        padding: EdgeInsets.only(left: 8, top: 8, right: 8),
+        child: Stack(children: [
+          HomeScreen(),
+          Positioned(
+            bottom: 35,
+            right: 15,
+            child: WriteButton(),
+          )
+        ]),
       ),
     ));
   }
