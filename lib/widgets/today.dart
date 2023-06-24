@@ -3,20 +3,25 @@ import 'package:flutter/material.dart';
 class TodayWidget extends StatelessWidget {
   const TodayWidget({super.key});
 
+  String dateFormat() {
+    DateTime date = DateTime.now();
+    return date.toString().substring(0, 10);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(left: 7),
       alignment: Alignment.topLeft,
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
-            "2023. 06. 24. Sat",
-            style: TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
+            dateFormat(),
+            style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w700),
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
         ],
       ),
     );
