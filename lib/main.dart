@@ -59,15 +59,15 @@ class Towe extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(7.25),
               decoration: BoxDecoration(
                   color: const Color.fromARGB(255, 108, 162, 255),
                   borderRadius: BorderRadius.circular(50)),
               child: IconButton(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
                 iconSize: 30,
                 onPressed: () {},
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
                 icon: const Icon(
                   Icons.draw,
                   color: Colors.white,
