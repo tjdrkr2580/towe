@@ -51,7 +51,7 @@ class Towe extends StatelessWidget {
         ],
       ),
       body: const Padding(
-        padding: EdgeInsets.only(left: 8, top: 8, right: 8),
+        padding: EdgeInsets.only(left: 8, right: 8),
         child: Stack(children: [
           HomeScreen(),
           Positioned(
