@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:towe/widgets/sized_box_30.dart';
+import 'package:towe/widgets/today.dart';
+import 'package:towe/widgets/todo_element.dart';
 import 'package:towe/widgets/weather_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,6 +29,18 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               borderRadius: const BorderRadius.all(Radius.circular(16))),
           child: const WeatherWidget(),
+        ),
+        const TodayWidget(),
+        Expanded(
+          child: ListView.separated(
+            itemCount: 6,
+            itemBuilder: (context, index) {
+              return const TodoElement();
+            },
+            separatorBuilder: (context, index) {
+              return const Divider(); // or use SizedBox for space.
+            },
+          ),
         )
       ],
     );
