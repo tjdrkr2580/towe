@@ -1,7 +1,26 @@
-import 'package:flutter/material.dart';
+import 'dart:async';
 
-class LandingScreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:towe/screens/home_screen.dart';
+
+class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
+
+  @override
+  State<LandingScreen> createState() => _LandingScreenState();
+}
+
+class _LandingScreenState extends State<LandingScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

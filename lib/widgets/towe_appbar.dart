@@ -28,6 +28,12 @@ class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             IconButton(
               onPressed: () {},
+              icon: const Icon(Icons.add_box_rounded),
+              splashRadius: 18,
+              iconSize: 25,
+            ),
+            IconButton(
+              onPressed: () {},
               icon: const Icon(Icons.menu),
               splashRadius: 18,
               iconSize: 25,

@@ -7,16 +7,26 @@ void main() async {
   runApp(const Towe());
 }
 
-class Towe extends StatelessWidget {
+class Towe extends StatefulWidget {
   const Towe({super.key});
 
+  @override
+  State<Towe> createState() => _ToweState();
+}
+
+class _ToweState extends State<Towe> {
   // This widget is the root of your application.
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
         home: Scaffold(
-      body: Padding(
-          padding: EdgeInsets.only(left: 8, right: 8), child: LandingScreen()),
+      body: LandingScreen(),
     ));
   }
 }
