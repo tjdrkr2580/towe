@@ -16,7 +16,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: const ToweAppBar(),
+        appBar: const ToweAppBar(
+          isMenu: true,
+        ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Column(

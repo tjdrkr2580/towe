@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ToweAppBar({
+    required this.isMenu,
     super.key,
   });
+
+  final bool isMenu;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -23,24 +26,26 @@ class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
       foregroundColor: Colors.black,
       backgroundColor: Colors.transparent,
       elevation: 0,
-      actions: [
-        Row(
-          children: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.add_box_rounded),
-              splashRadius: 18,
-              iconSize: 25,
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.menu),
-              splashRadius: 18,
-              iconSize: 25,
-            ),
-          ],
-        ),
-      ],
+      actions: isMenu == false
+          ? []
+          : [
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.add_box_rounded),
+                    splashRadius: 18,
+                    iconSize: 25,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.menu),
+                    splashRadius: 18,
+                    iconSize: 25,
+                  ),
+                ],
+              ),
+            ],
     );
   }
 }
