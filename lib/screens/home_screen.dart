@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:towe/widgets/sized_box_30.dart';
 import 'package:towe/widgets/today.dart';
 import 'package:towe/widgets/todo_element.dart';
 import 'package:towe/widgets/weather_widget.dart';
@@ -16,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBoxThirty(),
+        const SizedBox(height: 30),
         Container(
           padding: const EdgeInsets.all(20),
           width: double.infinity,
