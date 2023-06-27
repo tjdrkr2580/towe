@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_keyboard_size/flutter_keyboard_size.dart';
+import 'package:towe/provider/towe_provider.dart';
 import 'package:towe/screens/landing_screen.dart';
 
 void main() async {
@@ -15,8 +17,6 @@ class Towe extends StatefulWidget {
 }
 
 class _ToweState extends State<Towe> {
-  // This widget is the root of your application.
-
   @override
   void initState() {
     super.initState();
@@ -24,9 +24,13 @@ class _ToweState extends State<Towe> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-        home: Scaffold(
-      body: LandingScreen(),
-    ));
+    return ChangeNotifierProvider(
+      create: (_) => AuthProvider(),
+      child: const MaterialApp(
+          home: Scaffold(
+        body: LandingScreen(),
+        drawer: Drawer(),
+      )),
+    );
   }
 }

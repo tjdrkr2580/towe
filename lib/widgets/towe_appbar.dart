@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:towe/screens/todo_edit.dart';
 
 class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ToweAppBar({
@@ -32,7 +33,12 @@ class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => const TodoEditScreen()));
+                    },
                     icon: const Icon(Icons.add_box_rounded),
                     splashRadius: 18,
                     iconSize: 25,
