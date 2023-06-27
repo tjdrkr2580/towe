@@ -1,6 +1,4 @@
-import "dart:convert";
-
-import "package:http/http.dart";
+import "package:dio/dio.dart";
 
 class NetworkHelper {
   static final NetworkHelper _instance = NetworkHelper._internal();
@@ -9,13 +7,26 @@ class NetworkHelper {
   }
   NetworkHelper._internal();
 
+  final Dio dio = Dio();
+
   Future getData(String url) async {
-    Response response = await get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      print(response.statusCode);
+    try {
+      Response response = await dio.get(url);
+      Map<String, dynamic> responseData = response.data;
+      return responseData;
+    } catch (e) {
+      print(e);
       return null;
     }
   }
+
+  // Future postData(String url, dynamic data) async {
+  //   try {
+  //     Response response = await dio.post(url, data: data);
+  //     print(re)
+  //     return response.data;
+  //   } catch (e) {
+  //     return null;
+  //   }
+  // }
 }

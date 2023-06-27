@@ -157,7 +157,9 @@ class _MyWidgetState extends State<WeatherWidget> {
             );
           } else {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                color: Color.fromARGB(255, 211, 195, 255),
+              ),
             );
           }
         });
