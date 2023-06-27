@@ -15,7 +15,6 @@ class UserService {
       });
       return response;
     } catch (e) {
-      print(e);
       return null;
     }
   }
@@ -30,7 +29,6 @@ class UserService {
       });
       return response;
     } catch (e) {
-      print(e);
       return null;
     }
   }

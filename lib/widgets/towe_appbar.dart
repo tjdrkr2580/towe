@@ -12,6 +12,10 @@ class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
+  void openDrawer(BuildContext context) {
+    Scaffold.of(context).openDrawer();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -44,7 +48,7 @@ class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
                     iconSize: 25,
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => openDrawer(context),
                     icon: const Icon(Icons.menu),
                     splashRadius: 18,
                     iconSize: 25,

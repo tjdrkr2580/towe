@@ -9,8 +9,11 @@
 
 class Weather {
   final double temp;
+  // ignore: non_constant_identifier_names
   final double feels_like;
+  // ignore: non_constant_identifier_names
   final double temp_min;
+  // ignore: non_constant_identifier_names
   final double temp_max;
   final int humidity;
 

@@ -15,7 +15,6 @@ class NetworkHelper {
       Map<String, dynamic> responseData = response.data;
       return responseData;
     } catch (e) {
-      print(e);
       return null;
     }
   }
