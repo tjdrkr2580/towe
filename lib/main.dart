@@ -26,11 +26,9 @@ class _ToweState extends State<Towe> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => AuthProvider(),
-      child: const MaterialApp(
-          home: Scaffold(
-        body: LandingScreen(),
-        drawer: Drawer(),
-      )),
+      child: MaterialApp(
+        routes: {'/': (context) => const LandingScreen()},
+      ),
     );
   }
 }

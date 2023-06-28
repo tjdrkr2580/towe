@@ -13,7 +13,7 @@ class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   void openDrawer(BuildContext context) {
-    Scaffold.of(context).openDrawer();
+    Scaffold.of(context).openEndDrawer();
   }
 
   @override

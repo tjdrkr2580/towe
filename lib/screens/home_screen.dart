@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_size/flutter_keyboard_size.dart';
+import 'package:towe/provider/towe_provider.dart';
+import 'package:towe/screens/landing_screen.dart';
 import 'package:towe/widgets/today.dart';
 import 'package:towe/widgets/todo_element.dart';
 import 'package:towe/widgets/towe_appbar.dart';
@@ -14,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final AuthProvider provider = Provider.of<AuthProvider>(context);
     return MaterialApp(
       home: Scaffold(
         appBar: const ToweAppBar(
@@ -52,6 +56,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               )
             ],
+          ),
+        ),
+        endDrawer: SizedBox(
+          width: 225,
+          child: Drawer(
+            child: Column(
+              children: [
+                DrawerHeader(
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      provider.username!,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          provider.reset();
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (_) => const LandingScreen()));
+                        },
+                        icon: const Icon(Icons.logout))
+                  ],
+                ))
+              ],
+            ),
           ),
         ),
       ),

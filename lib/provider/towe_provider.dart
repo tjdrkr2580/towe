@@ -12,4 +12,9 @@ class AuthProvider with ChangeNotifier {
     _username = username;
     notifyListeners();
   }
+
+  void reset() {
+    _token = null;
+    _username = null;
+  }
 }

@@ -56,8 +56,12 @@ class _LoginWidgetState extends State<RegisterScreen> {
       if (response != null) {
         if (!mounted) return;
         Navigator.pop(context);
+      } else {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("아이디 혹은 비밀번호가 잘못 되었습니다")));
       }
-      return null;
+      return;
     }
   }
 

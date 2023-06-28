@@ -31,7 +31,14 @@ class _LoginWidgetState extends State<LoginWidget> {
         authProvider.setAuthData(token, _memberName!);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("회원가입에 성공했습니다, 로그인 해주세요.")));
         return response;
+      }
+      if (response == null) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("아이디 혹은 비밀번호가 잘못 되었습니다")));
       }
       return null;
     }
