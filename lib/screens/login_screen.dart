@@ -25,13 +25,17 @@ class _LoginWidgetState extends State<LoginWidget> {
       Response? response =
           await UserService().postLogin(_memberName, _password);
       if (response != null) {
-        final token = response.headers.map['authorization']!.first;
         if (!mounted) return;
         final authProvider = Provider.of<AuthProvider>(context, listen: false);
-        authProvider.setAuthData(token, _memberName!);
+        authProvider.setAuthData(_memberName!);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const HomeScreen()));
         return response;
+      }
+      if (response == null) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("아이디 혹은 비밀번호가 잘못 되었습니다")));
       }
       return null;
     }
