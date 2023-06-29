@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:towe/screens/home_screen.dart';
 import 'package:towe/screens/todo_edit.dart';
 
 class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -32,7 +33,18 @@ class ToweAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       actions: isMenu == false
-          ? []
+          ? [
+              IconButton(
+                icon: const Icon(
+                  Icons.arrow_back,
+                  size: 25,
+                ),
+                onPressed: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => const HomeScreen()));
+                },
+              )
+            ]
           : [
               Row(
                 children: [

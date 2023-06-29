@@ -30,9 +30,42 @@ class TodoService {
     for (var todoData in response.data) {
       Map<String, dynamic> data = Map<String, dynamic>.from(todoData);
       Todo todo = Todo(data['priority'], data['title'], data['subTitle'],
-          data['content'], data['checked']);
+          data['content'], data['checked'], data['todoId']);
       todos.add(todo);
     }
     return todos;
+  }
+
+  Future<Todo> getDo(todoId) async {
+    Response? response = await DioSingleton.dio
+        .get("${dotenv.env['TOWE_DEFAULT_URL']!}todos/$todoId");
+    if (response.statusCode != 200) {
+      throw Exception('Failed to fetch todo');
+    } else {
+      Map<String, dynamic> data = Map<String, dynamic>.from(response.data);
+      Todo todo = Todo(data['priority'], data['title'], data['subTitle'],
+          data['content'], data['checked'], data['todoId']);
+      return todo;
+    }
+  }
+
+  Future<bool> patchTodo(todoId, data) async {
+    Response? response = await DioSingleton.dio
+        .patch("${dotenv.env['TOWE_DEFAULT_URL']!}todos/$todoId", data: data);
+    if (response.statusCode != 200) {
+      throw Exception('Failed to fetch todo');
+    } else {
+      return true;
+    }
+  }
+
+  Future<bool> deleteTodo(todoId) async {
+    Response? response = await DioSingleton.dio
+        .delete("${dotenv.env['TOWE_DEFAULT_URL']!}todos/$todoId");
+    if (response.statusCode != 200) {
+      throw Exception('Failed to fetch todo');
+    } else {
+      return true;
+    }
   }
 }

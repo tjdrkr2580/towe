@@ -59,8 +59,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemCount: todos.length,
                           itemBuilder: (context, index) {
                             Todo todo = todos[index];
-                            return TodoElement(todo.checked, todo.subTitle,
-                                todo.title, todo.priority);
+                            return TodoElement(
+                                todo.content,
+                                todo.checked,
+                                todo.subTitle,
+                                todo.title,
+                                todo.priority,
+                                todo.todoId);
                           },
                           separatorBuilder: (context, index) {
                             return const SizedBox(
