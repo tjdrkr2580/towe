@@ -1,4 +1,5 @@
 import "package:dio/dio.dart";
+import "package:towe/service/dio_singleton.dart";
 
 class NetworkHelper {
   static final NetworkHelper _instance = NetworkHelper._internal();
@@ -11,7 +12,7 @@ class NetworkHelper {
 
   Future getData(String url) async {
     try {
-      Response response = await dio.get(url);
+      Response response = await DioSingleton.dio.get(url);
       Map<String, dynamic> responseData = response.data;
       return responseData;
     } catch (e) {

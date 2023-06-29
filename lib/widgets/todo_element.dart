@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
 class TodoElement extends StatefulWidget {
-  const TodoElement({super.key});
+  TodoElement(this.checked, this.subTitle, this.title, this.priority,
+      {super.key});
+
+  String title;
+  String subTitle;
+  int priority;
+  bool checked;
 
   @override
   State<TodoElement> createState() => _TodoElementState();
 }
 
 class _TodoElementState extends State<TodoElement> {
-  bool isBool = true;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,22 +23,22 @@ class _TodoElementState extends State<TodoElement> {
           borderRadius: BorderRadius.circular(8)),
       height: 110,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              "Flutter로 TodoList 레이아웃 잡기",
-              style: TextStyle(
+              widget.title,
+              style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
                   fontWeight: FontWeight.w700),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 22.5),
+              padding: const EdgeInsets.only(right: 22.5),
               child: Text(
-                "1",
-                style: TextStyle(
+                widget.priority.toString(),
+                style: const TextStyle(
                   color: Color.fromARGB(255, 212, 218, 255),
                   fontSize: 20,
                 ),
@@ -42,9 +46,9 @@ class _TodoElementState extends State<TodoElement> {
             ),
           ],
         ),
-        const Text(
-          "되도록이면 오늘 안에 마치면 좋을 것 같다. 히히",
-          style: TextStyle(
+        Text(
+          widget.subTitle,
+          style: const TextStyle(
               fontSize: 14.5,
               fontWeight: FontWeight.w500,
               color: Color.fromARGB(255, 233, 233, 233)),
@@ -55,12 +59,7 @@ class _TodoElementState extends State<TodoElement> {
             Transform.scale(
                 scale: 1.25,
                 child: Checkbox(
-                    value: isBool,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isBool = value!;
-                      });
-                    })),
+                    value: widget.checked, onChanged: (bool? value) {})),
           ],
         )
       ]),

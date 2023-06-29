@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_size/flutter_keyboard_size.dart';
+import 'package:towe/models/todo_data.dart';
 import 'package:towe/provider/towe_provider.dart';
 import 'package:towe/screens/landing_screen.dart';
+import 'package:towe/service/todo_service.dart';
 import 'package:towe/widgets/today.dart';
 import 'package:towe/widgets/todo_element.dart';
 import 'package:towe/widgets/towe_appbar.dart';
@@ -15,6 +17,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final AuthProvider provider = Provider.of<AuthProvider>(context);
@@ -43,17 +50,39 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const TodayWidget(),
               Expanded(
-                child: ListView.separated(
-                  itemCount: 6,
-                  itemBuilder: (context, index) {
-                    return const TodoElement();
-                  },
-                  separatorBuilder: (context, index) {
-                    return const SizedBox(
-                      height: 15,
-                    );
+                child: FutureBuilder(
+                  future: TodoService().getTodo(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      List<Todo> todos = snapshot.data!;
+                      return ListView.separated(
+                          itemCount: todos.length,
+                          itemBuilder: (context, index) {
+                            Todo todo = todos[index];
+                            return TodoElement(todo.checked, todo.subTitle,
+                                todo.title, todo.priority);
+                          },
+                          separatorBuilder: (context, index) {
+                            return const SizedBox(
+                              height: 15,
+                            );
+                          });
+                    } else {
+                      return const CircularProgressIndicator();
+                    }
                   },
                 ),
+                // child: ListView.separated(
+                //   itemCount: 6,
+                //   itemBuilder: (context, index) {
+                //     return const TodoElement();
+                //   },
+                //   separatorBuilder: (context, index) {
+                //     return const SizedBox(
+                //       height: 15,
+                //     );
+                //   },
+                // ),
               )
             ],
           ),

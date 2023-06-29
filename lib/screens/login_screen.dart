@@ -25,14 +25,11 @@ class _LoginWidgetState extends State<LoginWidget> {
       Response? response =
           await UserService().postLogin(_memberName, _password);
       if (response != null) {
-        final token = response.headers.map['authorization']!.first;
         if (!mounted) return;
         final authProvider = Provider.of<AuthProvider>(context, listen: false);
-        authProvider.setAuthData(token, _memberName!);
+        authProvider.setAuthData(_memberName!);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const HomeScreen()));
-        ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("회원가입에 성공했습니다, 로그인 해주세요.")));
         return response;
       }
       if (response == null) {
