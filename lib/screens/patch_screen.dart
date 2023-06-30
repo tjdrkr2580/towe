@@ -1,31 +1,61 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:towe/screens/home_screen.dart';
 import 'package:towe/service/todo_service.dart';
 import 'package:towe/widgets/towe_appbar.dart';
 
-class TodoEditScreen extends StatefulWidget {
-  const TodoEditScreen({super.key});
+class PatchScreen extends StatefulWidget {
+  const PatchScreen({
+    super.key,
+    required this.title,
+    required this.todoId,
+    required this.content,
+    required this.priority,
+    required this.subTitle,
+    required this.checked,
+  });
+  final int todoId;
+  final String title;
+  final String subTitle;
+  final String content;
+  final int priority;
+  final bool checked;
   @override
-  State<TodoEditScreen> createState() => _MyWidgetState();
+  State<PatchScreen> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<TodoEditScreen> {
-  String? _title = "";
-  String? _subtitle = "";
-  String? _content = "";
-  String? _priority;
+class _MyWidgetState extends State<PatchScreen> {
+  String? _title;
+  String? _subTitle;
+  String? _content;
+  int? _priority;
+  int? _todoId;
+  bool? _checked;
+
+  @override
+  void initState() {
+    super.initState();
+    _title = widget.title;
+    _subTitle = widget.subTitle;
+    _content = widget.content;
+    _priority = widget.priority;
+    _todoId = widget.todoId;
+    _checked = widget.checked;
+  }
+
   final _formKey = GlobalKey<FormState>();
 
   Future<void> onPostTodo() async {
     if (_formKey.currentState?.validate() ?? false) {
       _formKey.currentState!.save();
-      Response? response =
-          await TodoService().postTodo(_priority, _title, _subtitle, _content);
-      if (response == null) {
-        print("요청 실패");
-      } else {
+      bool response = await TodoService().patchTodo(_todoId, {
+        'priority': _priority,
+        'title': _title,
+        'subTitle': _subTitle,
+        'content': _content,
+        'checked': _checked
+      });
+      if (response == true) {
         if (!mounted) return;
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const HomeScreen()));
@@ -52,6 +82,7 @@ class _MyWidgetState extends State<TodoEditScreen> {
                       decoration: const InputDecoration(
                         hintText: "제목",
                       ),
+                      initialValue: _title,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "제목을 입력해주세요";
@@ -66,12 +97,13 @@ class _MyWidgetState extends State<TodoEditScreen> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
+                      initialValue: _subTitle,
                       style: const TextStyle(fontSize: 16),
                       decoration: const InputDecoration(
                         hintText: "요약",
                       ),
                       onSaved: (String? value) {
-                        _subtitle = value;
+                        _subTitle = value;
                       },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -84,12 +116,13 @@ class _MyWidgetState extends State<TodoEditScreen> {
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      initialValue: _priority.toString(),
                       maxLength: 1,
                       decoration: const InputDecoration(
                         hintText: "중요도 (숫자 1 ~ 5)",
                       ),
                       onSaved: (String? value) {
-                        _priority = value;
+                        _priority = int.parse(value!);
                       },
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -110,6 +143,7 @@ class _MyWidgetState extends State<TodoEditScreen> {
                     SizedBox(
                       height: 150,
                       child: TextFormField(
+                        initialValue: _content,
                         style: const TextStyle(fontSize: 16),
                         maxLength: 30,
                         maxLines: 3,
@@ -135,7 +169,7 @@ class _MyWidgetState extends State<TodoEditScreen> {
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.all(14)),
                       child: const Text(
-                        "추가하기",
+                        "수정하기",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w600),
                       ),

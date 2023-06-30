@@ -1,5 +1,5 @@
 class Weather {
-  final double temp;
+  final dynamic temp;
   final double feels_like;
   final double temp_min;
   final double temp_max;
